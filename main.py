@@ -1,36 +1,44 @@
 from functions import *
+import os
+
+os.system("cls") 
+
+print("Welcome to the calculator!")
 
 while True:
-    num1 = float(input("Digite o primeiro valor: "))
+    first_number = float(input("\nType the first number: "))
 
-    print("1 - Soma")
-    print("2 - Subtração")
-    print("3 - Multiplicação")
-    print("4 - Divisão")
+    print("[+] -> Sum \n[-] -> Subtraction \n[*] -> Multiplication \n[/] -> Division")
 
-    ask1 = int(input("Digite o número do tipo de operação que deseja realizar: "))
+    while True:
+        Operation_choice_type = input("\nEnter the symbol of the type of operation you want to perform: ")
+        if Operation_choice_type in ["+", "-", "*", "/"]:
+            break
+        else:
+            print("\nThe value entered is not available in the calculator.")
+            print("Please try type +, -, * or / again.")
+    second_number = float(input("Type the second number: "))
+    if Operation_choice_type == "+":
+        answer = sum(first_number, second_number)
+        print(f"The result of the sum is {answer}")
 
-    if ask1 not in [1, 2, 3, 4]:
-        print("O valor informado não está disponível na calculadora, favor digitar novamente:")
-    else:
-        num2 = float(input("Digite o segundo valor: "))
+    elif Operation_choice_type == "-":
+        answer = sub(first_number, second_number)
+        print(f"The result of the subtraction is {answer}")
 
-        if ask1 == 1:
-            answer = sum(num1, num2)
-            print(f"O resultado da soma é {answer}")
+    elif Operation_choice_type == "*":
+        answer = times(first_number, second_number)
+        print(f"The result of the multiplication is {answer}")
 
-        elif ask1 == 2:
-            answer = sub(num1, num2)
-            print(f"O resultado da subtração é {answer}")
+    elif Operation_choice_type == "/":
+        answer = division(first_number, second_number)
+        print(f"The result of the division is {answer}")
 
-        elif ask1 == 3:
-            answer = times(num1, num2)
-            print(f"O resultado da multiplicação é {answer}")
-
-        elif ask1 == 4:
-            answer = division(num1, num2)
-            print(f"O resultado da divisão é {answer}")
-
-        ask2 = input("Deseja realizar mais alguma operação (Sim ou Não)? ")
-        if ask2.lower() != "sim":
-            break 
+    while True:
+        exit_or_continue = int(input("\nDo you want to perform any further operations? \n\n0 - Yes | 1 - No: "))
+        if exit_or_continue == 0:
+            break
+        elif exit_or_continue == 1:
+            exit()
+        else: 
+            print("Invalid choice. Please enter a valid option.")
